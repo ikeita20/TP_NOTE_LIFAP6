@@ -28,7 +28,7 @@ using namespace std ;
  {
     int indice = hachage_Modulo( p.NumeroProduit ) ;
 
-        if ( tableaux[indice].NumeroProduit == p.NumeroProduit )
+        if ( tableaux[indice].NumeroProduit == p.NumeroProduit  )
         {
             return true ;
         }
@@ -43,20 +43,25 @@ using namespace std ;
  {
     int indice ;
 
-    if( Produit_Existe(p) )
-    {
          indice = hachage_Modulo( p.NumeroProduit ) ;
 
-             cout <<" Le produit est a l'indice "<< indice << " du tableau "<<endl;
+        if ( tableaux[indice].NumeroProduit == p.NumeroProduit  )
+        {
+            cout <<" Le produit est a l'indice "<< indice << " du tableau "<<endl;
             return tableaux[indice].NumeroProduit ;
+        }
+        else
+        {
+            int indice_2 = indice ;
 
-    }
-    else
-    {
-        cout <<" ce produit n'existe pas dans le tableau "<<endl;
-    }
+                do
+                {
+                    indice_2 = Re_Hachage_Lineaire(indice_2) ;
 
-  //  return ;
+                }while (tableaux[indice_2].NumeroProduit != p.NumeroProduit );
+
+                return tableaux[indice_2].NumeroProduit ;
+        }
 
  }
 
