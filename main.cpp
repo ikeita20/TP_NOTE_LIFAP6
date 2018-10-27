@@ -9,22 +9,19 @@ int main()
 
 {
 
+  tableHachage t ;
 
-    tableHachage t ;
-    produit p(10,3.0), q(20,2.5), k(30,0.5), y(40, 5.2) , o(8, 5.2) , oo(7, 5.2);
+
+    produit p(1,3.0), q(20,2.5), k(30,0.5), y(4, 5.2) , o(8, 5.2) , oo(7, 5.2);
 
     t.insererProduit(p) ;
-    t.insererProduit(q) ;
     t.insererProduit(k) ;
+     t.insererProduit(q) ;
     t.insererProduit(y) ;
-    t.insererProduit(oo) ;
+    t.insererProduit(o) ;
     t.affiche();
-
-    //t.Recherche_Produit(y) ;
-   // t.Supprimer_Produit(oo) ;
-   // t.affiche();
-    t.Modifier_Produit(p, 78,0.5) ;
-    t.affiche();
+    t.Supprimer_Produit(o) ;
+    //t.affiche() ;
 
 
 

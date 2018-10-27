@@ -3,28 +3,36 @@
 #include "produit.h"
 using namespace std ;
 
-#define TAILLE 10
+#define TAILLE 4
+
+ typedef unsigned int (*PTR_Fonction) (unsigned int ) ;
 
 class tableHachage
 {
     private:
-      // const int taille_Tableau = 50;
+
         produit tableaux[TAILLE] ;
-   /*
-        int (* fonction_hachage_1) (int ) ;
-        int (* fonction_hachage_2) (int ) ;
-        int (* fonction_hachage_3) (int ) ;
-  */
+/*
+        unsigned int (* Re_hachage_lineaire ) ( unsigned int NumeroP) ;
+        unsigned int (* Re_hachage_quadratique) ( unsigned int NumeroP) ;
+        unsigned int (* Double_hachage ) ( unsigned int NumeroP) ;
+*/
+         PTR_Fonction choix_hachage ;
+         int pas ;
+
 
     public:
         tableHachage() ;
         ~tableHachage() ;
         unsigned int hachage_Modulo( const unsigned int Numero_Produit ) ;
+static  unsigned int  Re_Hachage_Lineaire( unsigned int indice );
+static  unsigned int  Re_hachage_quadratique( unsigned int indice ) ;
+static  unsigned int  Double_hachage( unsigned int indice ) ;
         void insererProduit( const produit p ) ;
         void Recherche_Produit(const produit p ) ;
         void Modifier_Produit( const produit p , unsigned int numero , double prix ) ;
         void Supprimer_Produit(const produit p ) ;
-        unsigned int  Re_Hachage_Lineaire( const unsigned int indice );
+
         void affiche() const ;
 
 };
