@@ -41,7 +41,7 @@ using namespace std ;
                 choix_hachage = Re_hachage_quadratique ;
                 cout<<"Donnez le pas du Re_hachage_quadratique  : "<<endl;
                 cin>>pas ;
-		
+
 		*/
 
           break ;
@@ -130,7 +130,7 @@ using namespace std ;
 
  }
 
- void tableHachage::Recherche_Produit(const produit p )
+ unsigned int tableHachage::Recherche_Produit(const produit p)
  {
     int indice ;
 
@@ -139,34 +139,40 @@ using namespace std ;
         if ( tableaux[indice].NumeroProduit == p.NumeroProduit  )
         {
             cout <<" Le produit "<< p.NumeroProduit << " est a l'indice "<< indice << " du tableau "<<endl;
-
-           // return tableaux[indice].NumeroProduit ;
+            return indice ;
         }
         else
         {
-            int compteur = 0 ;
+                int compteur = 0 ;
+                int indice_2 = indice ;
 
-            int indice_2 = indice ;
                 do
                 {
                     indice_2 = (*choix_hachage)(indice_2) ;
                     compteur++ ;
 
-                } while ( ( tableaux[indice_2].NumeroProduit != p.NumeroProduit) && compteur <= TAILLE );
+                } while ((tableaux[indice_2].NumeroProduit != p.NumeroProduit) && compteur <= TAILLE );
 
 
-                if ( ( tableaux[indice_2].NumeroProduit != p.NumeroProduit) || (compteur >= TAILLE ) )
+                try
                 {
-                    cout<< " ce produit n'existe pas dans le tableau "<<endl;
-
+                  if ((tableaux[indice_2].NumeroProduit != p.NumeroProduit) || (compteur >= TAILLE ))
+                  {
+                      throw string("ce produit n'existe pas dans le tableau");
+                  }
+                  else
+                  {
+                      cout <<" Le produit "<< p.NumeroProduit << " est a l'indice "<< indice_2 << " du tableau "<<endl;
+                      return indice_2;
+                  }
                 }
-                else
+                catch(string const& chaine)
                 {
-                    cout <<" Le produit "<< p.NumeroProduit << " est a l'indice "<< indice_2 << " du tableau "<<endl;
-                     //return tableaux[indice_2].NumeroProduit ;
+                  cerr << chaine << endl;
                 }
-
         }
+
+        return EXIT_SUCCESS;
 
  }
 
@@ -258,5 +264,3 @@ void tableHachage:: Modifier_Produit( const produit p , unsigned int numero , do
     }
     cout<<endl;
  }
-
-

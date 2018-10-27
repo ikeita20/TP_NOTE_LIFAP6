@@ -25,11 +25,11 @@ class tableHachage
         tableHachage() ;
         ~tableHachage() ;
         unsigned int hachage_Modulo( const unsigned int Numero_Produit ) ;
-static  unsigned int  Re_Hachage_Lineaire( unsigned int indice );
-static  unsigned int  Re_hachage_quadratique( unsigned int indice ) ;
-static  unsigned int  Double_hachage( unsigned int indice ) ;
+        static  unsigned int  Re_Hachage_Lineaire( unsigned int indice );
+        static  unsigned int  Re_hachage_quadratique( unsigned int indice ) ;
+        static  unsigned int  Double_hachage( unsigned int indice ) ;
         void insererProduit( const produit p ) ;
-        void Recherche_Produit(const produit p ) ;
+        unsigned int  Recherche_Produit(const produit p ) ;
         void Modifier_Produit( const produit p , unsigned int numero , double prix ) ;
         void Supprimer_Produit(const produit p ) ;
 
