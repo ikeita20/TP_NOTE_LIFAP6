@@ -12,16 +12,20 @@ int main()
   tableHachage t ;
 
 
-    produit p(1,3.0), q(20,2.5), k(30,0.5), y(4, 5.2) , o(8, 5.2) , oo(7, 5.2);
+    produit p(1,3.0), q(20,2.5), k(4,0.5), y(5, 5.2) , o(8, 5.2) , oo(7, 5.2);
+
 
     t.insererProduit(p) ;
     t.insererProduit(k) ;
-     t.insererProduit(q) ;
+    t.insererProduit(q) ;
+
     t.insererProduit(y) ;
-    t.insererProduit(o) ;
+ /*   t.insererProduit(o) ;
     t.affiche();
     t.Supprimer_Produit(o) ;
-    //t.affiche() ;
+    */
+
+    t.affiche() ;
 
 
 

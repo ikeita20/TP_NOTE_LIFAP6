@@ -41,7 +41,7 @@ using namespace std ;
                 choix_hachage = Re_hachage_quadratique ;
                 cout<<"Donnez le pas du Re_hachage_quadratique  : "<<endl;
                 cin>>pas ;
-		
+
 		*/
 
           break ;
@@ -96,11 +96,13 @@ using namespace std ;
     {
         tableaux[indice] = p ;
        tableaux[indice].essai =  Essai + 1 ;
-       Essai = tableaux[indice].essai ;
 
     }
     else
     {
+
+        Essai = 1 ;
+
         int indice_2 = indice ;
         do
         {
