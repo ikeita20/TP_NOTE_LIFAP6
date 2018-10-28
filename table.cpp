@@ -81,7 +81,7 @@ using namespace std ;
     int indice ;
     int Essai = 0 ;
 
-    for(int i= 0 ; i<TAILLE ; i++ )
+    for(int i= 0 ; i<TAILLE ; i++ )//On devrait pouvoir utiliser recherche a la place
     {
         if(tableaux[i].NumeroProduit == p.NumeroProduit )
         {
@@ -115,7 +115,7 @@ using namespace std ;
 
         if( compteur== TAILLE )
         {
-            cout<<"Votre tableau est plein des ELEMENTS n'ont pas été inserer " <<endl;
+            cout<<"Votre tableau est plein, des ELEMENTS n'ont pas été inserés " <<endl;
 
         }
         else
@@ -172,11 +172,11 @@ using namespace std ;
                 }
         }
 
-        return EXIT_SUCCESS;
+        return EXIT_FAILURE;
 
  }
 
- void tableHachage::Supprimer_Produit(const produit p )
+ void tableHachage::Supprimer_Produit(const produit p )// utiliser la recherche ici aussi
  {
     int indice ;
 
@@ -216,7 +216,7 @@ using namespace std ;
         }
  }
 
-void tableHachage:: Modifier_Produit( const produit p , unsigned int numero , double prix )
+void tableHachage:: Modifier_Produit( const produit p , unsigned int numero , double prix )//recherche ici aussi
 {
     int indice = hachage_Modulo( p.NumeroProduit ) ;
 
