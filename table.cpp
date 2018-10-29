@@ -84,10 +84,16 @@ int tableHachage::pas = 0 ;
     int indice ;
     int Essai = 0 ;
 
+<<<<<<< HEAD
     indice = Recherche_Produit(p) ;
 
 
         if(tableaux[indice].NumeroProduit == p.NumeroProduit )
+=======
+    for(int i= 0 ; i<TAILLE ; i++ )//On devrait pouvoir utiliser recherche a la place
+    {
+        if(tableaux[i].NumeroProduit == p.NumeroProduit )
+>>>>>>> c1149c5dcadd544c2068536ab97909c555cadf81
         {
             cout<< "Le produit " << p.NumeroProduit <<" existe deja dans la table, on ne peux pas l'inserer "<<endl;
         }
@@ -118,6 +124,12 @@ int tableHachage::pas = 0 ;
 
                 }while (tableaux[indice_2].NumeroProduit != 0 && compteur !=TAILLE );
 
+<<<<<<< HEAD
+=======
+        if( compteur== TAILLE )
+        {
+            cout<<"Votre tableau est plein, des ELEMENTS n'ont pas été inserés " <<endl;
+>>>>>>> c1149c5dcadd544c2068536ab97909c555cadf81
 
                 if( compteur== TAILLE )
                 {
@@ -185,11 +197,11 @@ int tableHachage::pas = 0 ;
                 }
         }
 
-        return EXIT_SUCCESS;
+        return EXIT_FAILURE;
 
  }
 
- void tableHachage::Supprimer_Produit(const produit p )
+ void tableHachage::Supprimer_Produit(const produit p )// utiliser la recherche ici aussi
  {
     int indice ;
 
@@ -230,7 +242,7 @@ int tableHachage::pas = 0 ;
         }
  }
 
-void tableHachage:: Modifier_Produit( const produit p , unsigned int numero , double prix )
+void tableHachage:: Modifier_Produit( const produit p , unsigned int numero , double prix )//recherche ici aussi
 {
     int indice = Recherche_Produit(p) ;
 
