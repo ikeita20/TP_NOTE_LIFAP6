@@ -16,13 +16,13 @@ using namespace std ;
 
     do
     {
-    cout <<"----------------------------"<<endl;
-    cout<< " ****** Votre choix ********"<<endl;
+    cout <<"--------------------------------------------------------------"<<endl;
+    cout<< " ****** Choisissez votre Fonction de Ré-HACHAGE SVP ! ********"<<endl; cout<<endl;
 
     cout <<" 1 = Re-Hachage lineaire "<<endl;
     cout <<" 2 = Re-Hachage quadratique  "<<endl;
     cout <<" 3 = Double Hachage  "<<endl;
-    cout<< "----------------------------"<<endl;
+    cout<< "--------------------------------------------------------------"<<endl;
     cout<<endl;
     cout<< "Donnez votre choix : ";
     cin>>choix_utilisateur ;
@@ -104,7 +104,7 @@ using namespace std ;
 
        if( tableaux[indice].NumeroProduit == p.NumeroProduit )
        {
-            cout<< "clé presente "<<endl;
+            cout<< "Desolé ! Ce produit existe deja dans la table  "<<endl;
 
        }
        else
@@ -120,7 +120,7 @@ using namespace std ;
 
             else
             {
-                cout << "tableau plein "<<endl;
+                cout << "Votre tableau est plein  "<<endl;
 
             }
 
@@ -149,7 +149,11 @@ using namespace std ;
 
            if( tableaux[indice].NumeroProduit == p.NumeroProduit )
            {
-                cout <<" Le produit "<< p.NumeroProduit << " est a l'indice "<< indice << " du tableau "<<endl;
+              //  cout <<" Le produit "<< p.NumeroProduit << " est a l'indice "<< indice << " du tableau "<<endl;
+                cout<< "Numero Produit : "<< p.NumeroProduit <<endl;
+                cout<< "Prix: "<< p.Prix <<endl;
+                cout<< "Nbre essai : "<< p.essai <<endl;
+                cout<<endl;
                 return indice ;
 
            }
@@ -162,139 +166,21 @@ using namespace std ;
            }
 
 
-
-
-
-
-
-
-
-
-
- /*
-    int indice ;
-
-         indice = hachage_Modulo( p.NumeroProduit ) ;
-
-        if ( tableaux[indice].NumeroProduit == p.NumeroProduit  )
-        {
-            cout <<" Le produit "<< p.NumeroProduit << " est a l'indice "<< indice << " du tableau "<<endl;
-            return indice ;
-        }
-        else
-        {
-                int compteur = 0 ;
-                int indice_2 = indice ;
-
-                do
-                {
-              //      indice_2 = (*choix_hachage)(indice_2) ;
-                    compteur++ ;
-
-                } while ((tableaux[indice_2].NumeroProduit != p.NumeroProduit) && compteur <= TAILLE );
-
-
-                try
-                {
-                  if ((tableaux[indice_2].NumeroProduit != p.NumeroProduit) || (compteur >= TAILLE ))
-                  {
-                      throw string("ce produit n'existe pas dans le tableau");
-                  }
-                  else
-                  {
-                      cout <<" Le produit "<< p.NumeroProduit << " est a l'indice "<< indice_2 << " du tableau "<<endl;
-                      return indice_2;
-                  }
-                }
-                catch(string const& chaine)
-                {
-                  cerr << chaine << endl;
-                }
-        }
-
-        return EXIT_FAILURE;
-
- }
-
- void tableHachage::Supprimer_Produit(const produit p )// utiliser la recherche ici aussi
- {
-    int indice ;
-
-         indice = hachage_Modulo( p.NumeroProduit ) ;
-
-        if ( tableaux[indice].NumeroProduit == p.NumeroProduit  )
-        {
-
-           tableaux[indice].NumeroProduit = 0 ;
-           tableaux[indice].Prix = 0 ;
-            cout<< "Produit supprimé avec success :) " <<endl;
-        }
-        else
-        {
-            int compteur = 0 ;
-
-            int indice_2 = indice ;
-                do
-                {
-                 //   indice_2 = (*choix_hachage)(indice_2) ;
-                    compteur++ ;
-
-                } while ( ( tableaux[indice_2].NumeroProduit != p.NumeroProduit) && compteur <= TAILLE );
-
-
-                if ( ( tableaux[indice_2].NumeroProduit != p.NumeroProduit) || (compteur >= TAILLE ) )
-                {
-                    cout<< " ce produit n'existe pas dans le tableau "<<endl;
-
-                }
-                else
-                {
-                    tableaux[indice].NumeroProduit = 0 ;
-                    tableaux[indice].Prix = 0 ;
-                    cout<< "Produit supprimé avec success :) " <<endl;
-                }
-        }
-
-   */
-
  }
 
 void tableHachage:: Modifier_Produit( const produit p , unsigned int numero , double prix )//recherche ici aussi
 {
-    int indice = hachage_Modulo( p.NumeroProduit ) ;
 
-        if ( tableaux[indice].NumeroProduit == p.NumeroProduit  )
-        {
+   int indice = Recherche_Produit(p) ;
 
-           tableaux[indice].NumeroProduit = numero;
-           tableaux[indice].Prix = prix ;
-            cout<< "Produit modifié avec success :) " <<endl;
-        }
-        else
-        {
-            int compteur = 0 ;
+    if ( tableaux[indice].NumeroProduit == p.NumeroProduit  )
+    {
 
-            int indice_2 = indice ;
-                do
-                {
-                  //  indice_2 = Re_Hachage_Lineaire(indice_2) ;
-                    compteur++ ;
+        tableaux[indice].NumeroProduit = numero;
+        tableaux[indice].Prix = prix ;
+        cout<< "Produit modifié avec success :) " <<endl;
+    }
 
-                } while ( ( tableaux[indice_2].NumeroProduit != p.NumeroProduit) && compteur <= TAILLE );
-
-
-                if ( ( tableaux[indice_2].NumeroProduit != p.NumeroProduit) || (compteur >= TAILLE ) )
-                {
-                    cout<< " ce produit n'existe pas dans le tableau "<<endl;
-
-                }
-                else
-                {
-                    tableaux[indice].NumeroProduit = numero ;
-                    tableaux[indice].Prix = prix ;
-                    cout<< "Produit modifié avec success :) " <<endl;
-                }
-        }
 }
 
 
