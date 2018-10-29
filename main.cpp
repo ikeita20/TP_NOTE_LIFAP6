@@ -15,13 +15,11 @@ int main()
     t.affiche();
 
     int choix_utilisateur ;
-    bool quitter = true;
+    bool quitter = false;
 
-    do
-   {
+    do {
 
-            do
-            {
+            do {
             cout <<"----------------------------"<<endl;
             cout<< " ****** Menu  ********"<<endl;
 
@@ -35,7 +33,7 @@ int main()
             cout<< "Donnez votre choix : ";
             cin>>choix_utilisateur ;
 
-            } while (choix_utilisateur< 1 || choix_utilisateur > 3 );
+            } while (choix_utilisateur < 1 || choix_utilisateur > 5 );
 
             switch( choix_utilisateur )
             {
@@ -49,7 +47,7 @@ int main()
                                     {
                                         cout<<"Saisissez le Numero du produit : ";
                                         cin>>p->NumeroProduit ;
-                                        if(p->NumeroProduit <0 )
+                                        if(p->NumeroProduit <= 0 )
                                         {
                                             cout<<"Numero de produit Erronée "<<endl;
                                         }
@@ -95,18 +93,18 @@ int main()
 
                     case 5:{
 
-                            quitter = false ;
+                            quitter = true ;
                             cout<< "AU REVOIR "<<endl;
 
                             }break ;
 
 
+
             }
 
 
-    }while ( quitter != false );
+    }while ( quitter == false );
 
-    t.affiche();
 
 	return 0 ;
 
