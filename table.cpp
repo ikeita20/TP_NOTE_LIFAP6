@@ -37,9 +37,10 @@ int tableHachage::pas = 0 ;
          break ;
 
          case 2 :
+                choix_hachage = Re_hachage_quadratique ;
+
                 cout<<"Donnez le pas de Re-hachage svp : ";
                 cin>>pas;
-                choix_hachage = Re_hachage_quadratique ;
 
           break ;
 
@@ -72,8 +73,10 @@ int tableHachage::pas = 0 ;
 
  unsigned int tableHachage::Re_hachage_quadratique( unsigned int indice )
  {
-   //static int pas ;
-//    return " ta mère  :)  par ce que tu ne marche pas " ;
+
+   return " ta mère  :)  par ce que tu ne marche pas " ;
+
+
  }
 
 
@@ -88,12 +91,11 @@ int tableHachage::pas = 0 ;
 
         if(tableaux[indice].NumeroProduit == p.NumeroProduit )
         {
-            cout<< "ce produit existe"<<endl;
+             cout<< "le Produit "<<p.NumeroProduit<<" est deja dans le tableau :) " <<endl;
         }
         else
 
         {
-
                 indice = hachage_Modulo( p.NumeroProduit ) ;
 
                 if(tableaux[indice].NumeroProduit == 0 )
