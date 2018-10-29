@@ -48,7 +48,7 @@ int tableHachage::pas = 0 ;
           break ;
 
           default:
-                choix_hachage = Re_Hachage_Lineaire;
+               // choix_hachage = Re_Hachage_Lineaire;
           break ;
 
     }
@@ -73,7 +73,7 @@ int tableHachage::pas = 0 ;
  unsigned int tableHachage::Re_hachage_quadratique( unsigned int indice )
  {
    //static int pas ;
-    return " ta mère  :)  par ce que tu ne marche pas " ;
+//    return " ta mère  :)  par ce que tu ne marche pas " ;
  }
 
 
@@ -84,73 +84,55 @@ int tableHachage::pas = 0 ;
     int indice ;
     int Essai = 0 ;
 
-<<<<<<< HEAD
-    indice = Recherche_Produit(p) ;
-
+         indice = Recherche_Produit(p) ;
 
         if(tableaux[indice].NumeroProduit == p.NumeroProduit )
-=======
-    for(int i= 0 ; i<TAILLE ; i++ )//On devrait pouvoir utiliser recherche a la place
-    {
-        if(tableaux[i].NumeroProduit == p.NumeroProduit )
->>>>>>> c1149c5dcadd544c2068536ab97909c555cadf81
         {
-            cout<< "Le produit " << p.NumeroProduit <<" existe deja dans la table, on ne peux pas l'inserer "<<endl;
+            cout<< "ce produit existe"<<endl;
         }
-
         else
+
         {
-             indice = hachage_Modulo( p.NumeroProduit ) ;
 
-            if(tableaux[indice].NumeroProduit == 0 )
-            {
-                tableaux[indice] = p ;
-               tableaux[indice].essai =  Essai + 1 ;
+                indice = hachage_Modulo( p.NumeroProduit ) ;
 
-            }
-            else
-            {
-
-                Essai = 1 ;
-
-                int indice_2 = indice ;
-                do
+                if(tableaux[indice].NumeroProduit == 0 )
                 {
-                    indice_2 = (*choix_hachage)(indice_2) ;
-                    compteur++ ;
-                     tableaux[indice].essai = Essai + 1 ;
-                     Essai = tableaux[indice].essai ;
-
-
-                }while (tableaux[indice_2].NumeroProduit != 0 && compteur !=TAILLE );
-
-<<<<<<< HEAD
-=======
-        if( compteur== TAILLE )
-        {
-            cout<<"Votre tableau est plein, des ELEMENTS n'ont pas été inserés " <<endl;
->>>>>>> c1149c5dcadd544c2068536ab97909c555cadf81
-
-                if( compteur== TAILLE )
-                {
-                    cout<<"Votre tableau est plein un produit n'a pas été inserer " <<endl;
+                    tableaux[indice] = p ;
+                   tableaux[indice].essai =  Essai + 1 ;
+                   Essai = tableaux[indice].essai ;
 
                 }
                 else
                 {
-                    tableaux[indice_2] = p;
+                    int indice_2 = indice ;
+                    do
+                    {
+                        indice_2 = (*choix_hachage)(indice_2) ;
+                        compteur++ ;
+                         tableaux[indice].essai = Essai + 1 ;
+                         Essai = tableaux[indice].essai ;
 
-                    tableaux[indice_2].essai = Essai ;
 
+                    }while (tableaux[indice_2].NumeroProduit != 0 && compteur !=TAILLE );
+
+
+                    if( compteur== TAILLE )
+                    {
+                        cout<<"Votre tableau est plein, des ELEMENTS n'ont pas été inserés " <<endl;
+
+                    }
+                    else
+                    {
+                        tableaux[indice_2] = p;
+
+                        tableaux[indice_2].essai = Essai ;
+
+                    }
                 }
-    }
-
 
 
         }
-
-
-
 
 
  }

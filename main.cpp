@@ -20,13 +20,15 @@ int main()
     t.insererProduit(p) ;
     t.insererProduit(q) ;
     t.insererProduit(k) ;
-    t.insererProduit(y) ;
+    t.insererProduit(o) ;
+    t.insererProduit(oo) ;
+    t.affiche();
 
-    t.affiche();
-   // t.Supprimer_Produit(oo) ;
-    t.affiche();
-    t.Modifier_Produit(o,6,0.3) ;
-    t.affiche();
+     t.Supprimer_Produit(y);
+    t.Modifier_Produit(p,100,0.3) ;
+
+     t.affiche();
+
 
 
 
