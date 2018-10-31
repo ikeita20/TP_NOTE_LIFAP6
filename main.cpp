@@ -10,12 +10,12 @@ int main()
 
 {
     tableHachage t ;
-    produit a(7,0.5) ;
+    produit a(7,0.5) , b(15,0.0);
     t.insererProduit(a);
-    t.affiche();
-
     int choix_utilisateur ;
+
     bool quitter = false;
+
 
     do {
 
@@ -25,15 +25,17 @@ int main()
 
             cout <<" 1 = Ajouter un produit "<<endl;
             cout <<" 2 = Modifier un produit "<<endl;
-            cout <<" 3 = Rechercher un produit "<<endl;
-            cout <<" 4 = Afficher tous les produits "<<endl;
-            cout <<" 5 = Quitter l'application "<<endl;
+            cout <<" 3 = Modifier un Prix "<<endl;
+            cout <<" 4 = Supprimer un produit "<<endl;
+            cout <<" 5 = Rechercher un produit "<<endl;
+            cout <<" 6 = Afficher tous les produits "<<endl;
+            cout <<" 7 = Quitter l'application "<<endl;
             cout<< "----------------------------"<<endl;
             cout<<endl;
             cout<< "Donnez votre choix : ";
             cin>>choix_utilisateur ;
 
-            } while (choix_utilisateur < 1 || choix_utilisateur > 5 );
+            } while (choix_utilisateur < 1 || choix_utilisateur > 7 );
 
             switch( choix_utilisateur )
             {
@@ -76,12 +78,24 @@ int main()
                                       cout<< "Donnez le prix du nouveau produit : ";
                                       cin>> prix;
                                       cout<<endl;
-                                      produit prod(numero_du_produit_a_modifier,prix);
+                                      produit prod(numero_du_produit_a_modifier,0.0);
                                       t.Modifier_Produit(prod,numero_du_nouveau_produit,prix) ;
 
                             }break ;
 
                       case 3 :{
+
+                            // Modifiez un  prix
+
+                      } break ;
+
+                    case 4 :{
+
+                            // supprimer un  produit
+
+                      } break ;
+
+                      case 5 :{
 
                                     unsigned int numero_du_nouveau_produit_rechercher ;
                                     cout<< "Vous Rechercher le produit N° : ? ";
@@ -90,8 +104,14 @@ int main()
                                     t.Recherche_Produit(prod2);
 
                             }break ;
+                    case 6 : {
 
-                    case 5:{
+                    // afficher tous les produit
+
+
+                    } break ;
+
+                    case 7:{
 
                             quitter = true ;
                             cout<< "AU REVOIR "<<endl;

@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include "table.h"
+#include <time.h>
+#include<fstream>
 
 using namespace std ;
 
@@ -17,7 +19,7 @@ using namespace std ;
     do
     {
     cout <<"--------------------------------------------------------------"<<endl;
-    cout<< " ****** Choisissez votre Fonction de Ré-HACHAGE SVP ! ********"<<endl; cout<<endl;
+    cout<< " ****** Choisissez votre Fonction de Ré-HACHAGE ! ********"<<endl; cout<<endl;
 
     cout <<" 1 = Re-Hachage lineaire "<<endl;
     cout <<" 2 = Re-Hachage quadratique  "<<endl;
@@ -37,10 +39,7 @@ using namespace std ;
          break ;
 
          case 2 :
-
-
                 choix_hachage = Re_hachage_quadratique ;
-
           break ;
 
           case 3 :
@@ -113,7 +112,6 @@ using namespace std ;
             {
                 tableaux[indice].NumeroProduit = p.NumeroProduit ;
                 tableaux[indice].Prix = p.Prix ;
-
                 tableaux[indice].essai =  i - 1 ;
 
             }
@@ -136,13 +134,18 @@ using namespace std ;
  unsigned int tableHachage::Recherche_Produit(const produit p)
  {
 
-  unsigned int indice ;
-   int i = 1 ;
+    unsigned int indice ;
+    int i = 1 ;
+    clock_t temps ;
+    double seconde ;
 
            do
            {
                 indice  = (*choix_hachage)(p.NumeroProduit,i ) ;
                 i++;
+                temps = clock() ;
+                seconde = (double) temps / CLOCKS_PER_SEC ;
+
 
            }while( tableaux[indice].NumeroProduit != p.NumeroProduit && i<=TAILLE );
 
@@ -150,11 +153,29 @@ using namespace std ;
            if( tableaux[indice].NumeroProduit == p.NumeroProduit )
            {
               //  cout <<" Le produit "<< p.NumeroProduit << " est a l'indice "<< indice << " du tableau "<<endl;
-                cout<< "Numero Produit : "<< p.NumeroProduit <<endl;
-                cout<< "Prix: "<< p.Prix <<endl;
-                cout<< "Nbre essai : "<< p.essai <<endl;
+                cout<< "Numero Produit : "<< tableaux[indice].NumeroProduit  <<endl;
+                cout<< "Prix: "<< tableaux[indice].Prix  <<endl;
+                cout<< "Nbre essai : "<< tableaux[indice].essai  <<endl;
                 cout<<endl;
+
+
+                ofstream fichier("Performance.txt", ios::app );
+                if(fichier.is_open() )
+                {
+
+                    cout<<endl; cout<<endl;
+
+                    fichier<< "      "<<tableaux[indice].NumeroProduit<< "           "<< seconde <<endl;
+
+
+                }
+                else
+                {
+                    cerr<<"Impossible d'ouvrir le fichier " <<endl;
+                }
+
                 return indice ;
+
 
            }
            else
@@ -182,6 +203,23 @@ void tableHachage:: Modifier_Produit( const produit p , unsigned int numero , do
     }
 
 }
+
+void tableHachage::Supprimer_Produit(const produit p )
+ {
+    unsigned int indice = Recherche_Produit(p) ;
+
+    if (tableaux[indice].NumeroProduit ==  p.NumeroProduit )
+    {
+        tableaux[indice].NumeroProduit = 0 ;
+        tableaux[indice].Prix = 0.0 ;
+        tableaux[indice].essai = 0 ;
+    }
+    else
+    {
+
+    }
+
+ }
 
 
  void tableHachage::affiche() const

@@ -3,7 +3,7 @@
 #include "produit.h"
 using namespace std ;
 
-#define TAILLE 4
+#define TAILLE 200
 
  typedef unsigned int (*PTR_Fonction) (unsigned int Numero_Produit , int i ) ;
 
