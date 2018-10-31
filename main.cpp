@@ -13,9 +13,8 @@ int main()
     produit a(7,0.5) , b(15,0.0);
     t.insererProduit(a);
     int choix_utilisateur ;
-
+   cout<<t.Recherche_Produit(b) ;
     bool quitter = false;
-
 
     do {
 

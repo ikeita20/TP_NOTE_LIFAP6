@@ -122,7 +122,6 @@ using namespace std ;
 
             }
 
-
        }
 
 
@@ -131,10 +130,10 @@ using namespace std ;
 
 
 
- unsigned int tableHachage::Recherche_Produit(const produit p)
+  int tableHachage::Recherche_Produit(const produit p)
  {
 
-    unsigned int indice ;
+     int indice ;
     int i = 1 ;
     clock_t temps ;
     double seconde ;
