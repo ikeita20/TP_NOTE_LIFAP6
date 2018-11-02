@@ -2,25 +2,24 @@ all: executable.out
 
 executable.out : main.o table.o produit.o
 
-	g++ main.o table.o produit.o -o executable.out
+	g++ -std=c++11 main.o table.o produit.o -o executable.out
 
 
-main.o : main.cpp table.h 
+main.o : main.cpp table.h
 
-	g++ -Wall -c main.cpp
+	g++ -std=c++11 -Wall -c main.cpp
 
 
 table.o : table.cpp table.h produit.h
 
-	g++ -Wall -c table.cpp
+	g++  -std=c++11 -Wall -c table.cpp
 
-produit.o : produit.cpp produit.h 
+produit.o : produit.cpp produit.h
 
-	g++ -Wall -c produit.cpp 
+	g++ -std=c++11 -Wall -c produit.cpp
 
 clean :
 	rm *.o
 
-veryclean : clean 
+veryclean : clean
 	rm *.out
-

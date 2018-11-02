@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include "table.h"
+#include <string>
+#include <stdexcept>
 
 
 using namespace std;
@@ -12,8 +14,9 @@ int main()
     tableHachage t ;
     produit a(7,0.5) , b(15,0.0);
     t.insererProduit(a);
-    int choix_utilisateur ;
-
+    string choix_string ;
+    int choix_utilisateur;
+    cout<<t.Recherche_Produit(b) ;
     bool quitter = false;
 
     do {
@@ -32,7 +35,16 @@ int main()
             cout<< "----------------------------"<<endl;
             cout<<endl;
             cout<< "Donnez votre choix : ";
-            cin>>choix_utilisateur ;
+            cin>>choix_string ;
+
+            try {
+                choix_utilisateur = std::stoi(choix_string);
+            }
+            catch (const std::invalid_argument& e) {
+              choix_utilisateur = 45;
+              cout << "Veuillez écrire un nombre entier !\n";
+
+            }
 
             } while (choix_utilisateur < 1 || choix_utilisateur > 7 );
 
@@ -142,7 +154,7 @@ int main()
 
                     case 6 : {
 
-                                t.affiche();
+                                    t.affiche();
 
 
                     } break ;
@@ -154,7 +166,8 @@ int main()
 
                             }break ;
 
-
+                    default :cout << "Veuillez choisir un choix dans la liste s'il vous plait\n";
+                             break;
 
             }
 
