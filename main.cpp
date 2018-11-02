@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include "table.h"
+#include <string>
+#include <stdexcept>
 
 
 using namespace std;
@@ -12,8 +14,9 @@ int main()
     tableHachage t ;
     produit a(7,0.5) , b(15,0.0);
     t.insererProduit(a);
-    int choix_utilisateur ;
-
+    string choix_string ;
+    int choix_utilisateur;
+    //cout<<t.Recherche_Produit(b) ;
     bool quitter = false;
 
     do {
@@ -32,7 +35,16 @@ int main()
             cout<< "----------------------------"<<endl;
             cout<<endl;
             cout<< "Donnez votre choix : ";
-            cin>>choix_utilisateur ;
+            cin>>choix_string ;
+
+            try {
+                choix_utilisateur = std::stoi(choix_string);
+            }
+            catch (const std::invalid_argument& e) {
+              choix_utilisateur = 45;
+              cout << "Veuillez écrire un nombre entier !\n";
+
+            }
 
             } while (choix_utilisateur < 1 || choix_utilisateur > 7 );
 
@@ -61,8 +73,17 @@ int main()
 
                                     }while( (int)p->NumeroProduit <= 0  );
 
-                                    cout<<"Saisissez le Prix du produit : ";
-                                    cin>>p->Prix ;
+                                    do
+                                    {
+                                      cout<<"Saisissez le Prix du produit : ";
+                                      cin>>p->Prix ;
+                                      if( (int)p->Prix <= 0 )
+                                      {
+                                          cout<<"Prix erroné "<<endl;
+
+                                      }
+                                    }while ( (int)p->Prix <= 0 );
+
                                     t.insererProduit(*p) ;
 
                                    // cout<<"FIN de l'ajout "<<endl;
@@ -78,14 +99,27 @@ int main()
                                       cout<< "Modification de la CLÉ d'un produit "<<endl<<endl;
                                       cout<< "Donnez le Numero du produit a modifier : ";
                                       cin>>numero_du_produit_a_modifier ;
-                                       produit prod(numero_du_produit_a_modifier,0.0);
-
-                                       if( t.Recherche_Produit(prod) != -1 )
-                                       {
+                                      if( numero_du_produit_a_modifier >0){
+                                        produit prod(numero_du_produit_a_modifier,0.0);
+                                        if( t.Recherche_Produit(prod) != -1 )
+                                        {
                                             cout<< "Donnez le Numero du nouveau produit : ";
                                             cin>> numero_du_nouveau_produit;
-                                             t.Modifier_CLE(prod,numero_du_nouveau_produit) ;
-                                       }
+                                            if(numero_du_nouveau_produit >0)
+                                            {
+                                              t.Modifier_CLE(prod,numero_du_nouveau_produit) ;
+                                            }
+                                            else
+                                            {
+                                              cout << "nouveau numéro de produit non valide" << '\n';
+                                            }
+                                        }
+                                      }
+                                      else
+                                      {
+                                        cout << "numéro de produit non valide" << '\n';
+                                      }
+
 
 
 
@@ -102,13 +136,25 @@ int main()
                                       cout<< "Modification du Prix  d'un Produit "<<endl;
                                       cout<< "Donnez le Numero du produit a modifier : ";
                                       cin>>numero_du_produit_a_modifier;
-                                      produit p (numero_du_produit_a_modifier,0.0 ) ;
+                                      if( numero_du_produit_a_modifier >0){
+                                        produit p (numero_du_produit_a_modifier,0.0 ) ;
 
-                                       if( t.Recherche_Produit(p) != -1 )
+                                         if( t.Recherche_Produit(p) != -1 )
+                                         {
+                                              cout<< "Donnez le Nouveau prix du produit : ";
+                                              cin>>nouveau_prix ;
+                                              if(nouveau_prix >0){
+                                               t.Modifier_PRIX(p,nouveau_prix) ;
+                                              }
+                                              else
+                                              {
+                                                std::cout << "Nouveau prix incorrect" << '\n';
+                                              }
+                                         }
+                                       }
+                                       else
                                        {
-                                            cout<< "Donnez le Nouveau prix du produit : ";
-                                            cin>>nouveau_prix ;
-                                             t.Modifier_PRIX(p,nouveau_prix) ;
+                                         std::cout << "numéro de produit non valide" << '\n';
                                        }
 
 
@@ -119,8 +165,14 @@ int main()
                                      unsigned int numero_du_produit_a_supprimer ;
                                      cout<< "Suppression d'un Produit "<<endl<<endl;
                                       cin>>numero_du_produit_a_supprimer ;
-                                      produit p(numero_du_produit_a_supprimer,0.0) ;
-                                      t.Supprimer_Produit(p) ;
+                                      if( numero_du_produit_a_supprimer >0){
+                                        produit p(numero_du_produit_a_supprimer,0.0) ;
+                                        t.Supprimer_Produit(p) ;
+                                      }
+                                      else
+                                      {
+                                        std::cout << "Numéro de produit non valide" << '\n';
+                                      }
 
 
 
@@ -132,17 +184,23 @@ int main()
                                     unsigned int numero_du_nouveau_produit_rechercher ;
                                     cout<< "Vous Rechercher le produit N° : ? ";
                                     cin>>numero_du_nouveau_produit_rechercher ;
+                                    if( numero_du_nouveau_produit_rechercher >0){
 
-                                    produit prod2(numero_du_nouveau_produit_rechercher,0.0);
+                                      produit prod2(numero_du_nouveau_produit_rechercher,0.0);
+                                      t.Affiche_Produit(prod2) ;
 
-                                    t.Affiche_Produit(prod2) ;
+                                    }
+                                    else
+                                    {
+                                      std::cout << "numéro de produit non valide" << '\n';
+                                    }
 
                             }break ;
 
 
                     case 6 : {
 
-                                t.affiche();
+                                    t.affiche();
 
 
                     } break ;
@@ -154,7 +212,8 @@ int main()
 
                             }break ;
 
-
+                    default :cout << "Veuillez choisir un choix dans la liste s'il vous plait\n";
+                             break;
 
             }
 
