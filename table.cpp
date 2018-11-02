@@ -4,6 +4,8 @@
 #include <math.h>
 #include <time.h>
 #include<fstream>
+#include <string>
+#include <stdexcept>
 
 
 using namespace std ;
@@ -17,6 +19,7 @@ PTR_Fonction_PAS tableHachage::pas_rehachage = NULL ;
 
 
     int choix_utilisateur ;
+    string choix_string;
 
     do
     {
@@ -29,7 +32,16 @@ PTR_Fonction_PAS tableHachage::pas_rehachage = NULL ;
     cout<< "--------------------------------------------------------------"<<endl;
     cout<<endl;
     cout<< "Donnez votre choix : ";
-    cin>>choix_utilisateur ;
+    cin>>choix_string ;
+
+    try {
+        choix_utilisateur = std::stoi(choix_string);
+    }
+    catch (const std::invalid_argument& e) {
+      choix_utilisateur = 45;
+      cout << "Veuillez écrire un nombre entier !\n";
+
+    }
 
     } while (choix_utilisateur< 1 || choix_utilisateur > 3 );
 
