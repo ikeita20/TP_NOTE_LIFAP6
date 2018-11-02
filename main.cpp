@@ -16,7 +16,7 @@ int main()
     t.insererProduit(a);
     string choix_string ;
     int choix_utilisateur;
-    cout<<t.Recherche_Produit(b) ;
+    //cout<<t.Recherche_Produit(b) ;
     bool quitter = false;
 
     do {
@@ -73,8 +73,17 @@ int main()
 
                                     }while( (int)p->NumeroProduit <= 0  );
 
-                                    cout<<"Saisissez le Prix du produit : ";
-                                    cin>>p->Prix ;
+                                    do
+                                    {
+                                      cout<<"Saisissez le Prix du produit : ";
+                                      cin>>p->Prix ;
+                                      if( (int)p->Prix <= 0 )
+                                      {
+                                          cout<<"Prix erroné "<<endl;
+
+                                      }
+                                    }while ( (int)p->Prix <= 0 );
+
                                     t.insererProduit(*p) ;
 
                                     cout<<"FIN de l'ajout "<<endl;
@@ -94,14 +103,21 @@ int main()
                                         produit prod(numero_du_produit_a_modifier,0.0);
                                         if( t.Recherche_Produit(prod) != -1 )
                                         {
-                                             cout<< "Donnez le Numero du nouveau produit : ";
-                                             cin>> numero_du_nouveau_produit;
+                                            cout<< "Donnez le Numero du nouveau produit : ";
+                                            cin>> numero_du_nouveau_produit;
+                                            if(numero_du_nouveau_produit >0)
+                                            {
                                               t.Modifier_CLE(prod,numero_du_nouveau_produit) ;
+                                            }
+                                            else
+                                            {
+                                              cout << "nouveau numéro de produit non valide" << '\n';
+                                            }
                                         }
                                       }
                                       else
                                       {
-                                        std::cout << "numéro de produit non valide" << '\n';
+                                        cout << "numéro de produit non valide" << '\n';
                                       }
 
 
@@ -127,7 +143,13 @@ int main()
                                          {
                                               cout<< "Donnez le Nouveau prix du produit : ";
                                               cin>>nouveau_prix ;
+                                              if(nouveau_prix >0){
                                                t.Modifier_PRIX(p,nouveau_prix) ;
+                                              }
+                                              else
+                                              {
+                                                std::cout << "Nouveau prix incorrect" << '\n';
+                                              }
                                          }
                                        }
                                        else
@@ -149,7 +171,7 @@ int main()
                                       }
                                       else
                                       {
-                                        std::cout << "numéro de produit non valide" << '\n';
+                                        std::cout << "Numéro de produit non valide" << '\n';
                                       }
 
 
