@@ -10,6 +10,7 @@ public:
     unsigned int NumeroProduit;
 	double Prix ;
 	int essai;
+	int statut ;
 
 	produit();
 	~produit();

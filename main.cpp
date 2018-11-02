@@ -13,7 +13,7 @@ int main()
     produit a(7,0.5) , b(15,0.0);
     t.insererProduit(a);
     int choix_utilisateur ;
-   cout<<t.Recherche_Produit(b) ;
+
     bool quitter = false;
 
     do {
@@ -43,18 +43,23 @@ int main()
 
                                     produit *p ;
                                     p =  new produit() ;
+                                    cout<<endl<<endl;
                                     cout<< "Ajout d'un produit "<<endl;
                                     do
                                     {
                                         cout<<"Saisissez le Numero du produit : ";
                                         cin>>p->NumeroProduit ;
-                                        if(p->NumeroProduit <= 0 )
+
+                                        if( (int)p->NumeroProduit <= 0 )
                                         {
                                             cout<<"Numero de produit Erronée "<<endl;
+
+
+
                                         }
 
-                                    }while(p->NumeroProduit <= 0);
 
+                                    }while( (int)p->NumeroProduit <= 0  );
 
                                     cout<<"Saisissez le Prix du produit : ";
                                     cin>>p->Prix ;
@@ -68,29 +73,57 @@ int main()
 
                                    unsigned int numero_du_nouveau_produit ;
                                    unsigned int numero_du_produit_a_modifier ;
-                                   double prix;
-                                      cout<< "Modification d'un produit "<<endl;
+
+                                      cout<<endl<<endl;
+                                      cout<< "Modification de la CLÉ d'un produit "<<endl<<endl;
                                       cout<< "Donnez le Numero du produit a modifier : ";
                                       cin>>numero_du_produit_a_modifier ;
-                                      cout<< "Donnez le Numero du nouveau produit : ";
-                                      cin>> numero_du_nouveau_produit;
-                                      cout<< "Donnez le prix du nouveau produit : ";
-                                      cin>> prix;
-                                      cout<<endl;
-                                      produit prod(numero_du_produit_a_modifier,0.0);
-                                      t.Modifier_Produit(prod,numero_du_nouveau_produit,prix) ;
+                                       produit prod(numero_du_produit_a_modifier,0.0);
+
+                                       if( t.Recherche_Produit(prod) != -1 )
+                                       {
+                                            cout<< "Donnez le Numero du nouveau produit : ";
+                                            cin>> numero_du_nouveau_produit;
+                                             t.Modifier_CLE(prod,numero_du_nouveau_produit) ;
+                                       }
+
+
+
+
+
 
                             }break ;
 
                       case 3 :{
+                                    unsigned int numero_du_produit_a_modifier ;
+                                    double nouveau_prix ;
 
-                            // Modifiez un  prix
+                                      cout<<endl<<endl;
+                                      cout<< "Modification du Prix  d'un Produit "<<endl;
+                                      cout<< "Donnez le Numero du produit a modifier : ";
+                                      cin>>numero_du_produit_a_modifier;
+                                      produit p (numero_du_produit_a_modifier,0.0 ) ;
+
+                                       if( t.Recherche_Produit(p) != -1 )
+                                       {
+                                            cout<< "Donnez le Nouveau prix du produit : ";
+                                            cin>>nouveau_prix ;
+                                             t.Modifier_PRIX(p,nouveau_prix) ;
+                                       }
+
+
 
                       } break ;
 
                     case 4 :{
+                                     unsigned int numero_du_produit_a_supprimer ;
+                                     cout<< "Suppression d'un Produit "<<endl<<endl;
+                                      cin>>numero_du_produit_a_supprimer ;
+                                      produit p(numero_du_produit_a_supprimer,0.0) ;
+                                      t.Supprimer_Produit(p) ;
 
-                            // supprimer un  produit
+
+
 
                       } break ;
 
@@ -99,13 +132,17 @@ int main()
                                     unsigned int numero_du_nouveau_produit_rechercher ;
                                     cout<< "Vous Rechercher le produit N° : ? ";
                                     cin>>numero_du_nouveau_produit_rechercher ;
+
                                     produit prod2(numero_du_nouveau_produit_rechercher,0.0);
-                                    t.Recherche_Produit(prod2);
+
+                                    t.Affiche_Produit(prod2) ;
 
                             }break ;
+
+
                     case 6 : {
 
-                    // afficher tous les produit
+                                t.affiche();
 
 
                     } break ;
@@ -123,6 +160,8 @@ int main()
 
 
     }while ( quitter == false );
+
+
 
 
 	return 0 ;
