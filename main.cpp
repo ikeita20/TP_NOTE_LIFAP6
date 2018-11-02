@@ -65,7 +65,7 @@ int main()
                                     cin>>p->Prix ;
                                     t.insererProduit(*p) ;
 
-                                    cout<<"FIN de l'ajout "<<endl;
+                                   // cout<<"FIN de l'ajout "<<endl;
 
                             }break ;
 

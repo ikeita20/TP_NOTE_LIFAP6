@@ -139,6 +139,7 @@ int tableHachage::pas_rehachage_quadratique(int i )
                 tableaux[indice].NumeroProduit = p.NumeroProduit ;
                 tableaux[indice].Prix = p.Prix ;
                 tableaux[indice].essai =  i - 1 ;
+                 cout<< "le produit  "<< tableaux[indice].NumeroProduit <<" a été ajouté avec succes :) "<<endl;
 
             }
 
