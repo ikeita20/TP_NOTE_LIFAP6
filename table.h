@@ -3,7 +3,7 @@
 #include "produit.h"
 using namespace std ;
 
-#define TAILLE 3
+#define TAILLE 100
 
  typedef unsigned int (*PTR_Fonction) (unsigned int Numero_Produit , int i ) ;
  typedef int (*PTR_Fonction_PAS) (int i ) ;
@@ -42,6 +42,6 @@ class tableHachage
         void Supprimer_Produit(const produit p ) ;
 
         void affiche() const ;
-        void Affiche_Produit(const produit p) ;
+        void Affiche_Produit(const int indice) ;
 
 };

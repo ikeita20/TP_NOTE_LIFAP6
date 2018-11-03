@@ -34,16 +34,17 @@ PTR_Fonction_PAS tableHachage::pas_rehachage = NULL ;
     cout<< "Donnez votre choix : ";
     cin>>choix_string ;
 
-    try {
-        choix_utilisateur = std::stoi(choix_string);
-    }
-    catch (const std::invalid_argument& e) {
-      choix_utilisateur = 45;
-      cout << "Veuillez écrire un nombre entier !\n";
+        try{
 
-    }
+            choix_utilisateur = std::stoi(choix_string);
+        }
+        catch (const std::invalid_argument& e) {
+          choix_utilisateur = 45;//choix d'une valeur non selectionnable pour faciliter le traitement
+          cout << "Veuillez écrire un nombre entier !\n";
 
-    } while (choix_utilisateur< 1 || choix_utilisateur > 3 );
+        }
+
+    } while (choix_utilisateur < 1 || choix_utilisateur > 3 );
 
     switch( choix_utilisateur )
     {
@@ -195,10 +196,30 @@ int tableHachage::Recherche_Produit(const produit p)
                 ofstream fichier("Performance.txt", ios::app );
                 if(fichier.is_open() )
                 {
+                    if( choix_hachage == Re_Hachage_Lineaire )
+                    {
 
-                    cout<<endl; cout<<endl;
 
-                    fichier<< "      "<<tableaux[indice].NumeroProduit<< "           "<< seconde <<endl;
+                    fichier<< "      "<<tableaux[indice].NumeroProduit<< "            "<< seconde <<"       Lineaire "<<endl;
+
+                    }
+                    else if (choix_hachage == Re_hachage_quadratique )
+                    {
+
+                    fichier<< "      "<<tableaux[indice].NumeroProduit<< "            "<< seconde <<"      quadratique " <<endl;
+
+
+                    }
+                    else
+                    {
+
+
+                    fichier<< "      "<<tableaux[indice].NumeroProduit<< "             "<< seconde <<"         double "<< endl;
+
+                    }
+
+
+
 
 
                 }
@@ -215,7 +236,9 @@ int tableHachage::Recherche_Produit(const produit p)
            {
 
 
-              cout <<" Le produit "<< p.NumeroProduit << " n'existe pas dans le tableau "<<endl;
+               //cout <<" Le produit "<< (int)p.NumeroProduit << " n'existe pas dans le tableau "<<endl;
+
+
               return -1 ;
 
            }
@@ -285,28 +308,32 @@ void tableHachage::Supprimer_Produit(const produit p )
         if( tableaux[i].statut == 1 )
         {
 
-            cout<< "----------------------------"<<endl<<endl;
+            cout<< "-------------------------------"<<endl<<endl;
 
                 cout<<" Produit N° :    "<< tableaux[i].NumeroProduit<< " "<<endl;
                 cout<<" prix  :         "<< tableaux[i].Prix<<endl;
                 cout<<" Nombre d'essai : "<< tableaux[i].essai<< " " <<endl;
                 cout<<" Indice dans le tableau :   "<< i << " "<<endl;
-            cout<< "----------------------------"<<endl<<endl;
+            cout<< "-------------------------------"<<endl<<endl;
 
         }
     }
     cout<<endl;
  }
-void tableHachage::Affiche_Produit(const produit p)
+void tableHachage::Affiche_Produit(const int indice)
 {
-        int indice = Recherche_Produit(p);
-         if( indice != -1 )
-         {
+
+             cout<< "-------------------------------"<<endl<<endl;
 
             cout<<" Produit N° :    "<< tableaux[indice].NumeroProduit<< " "<<endl;
             cout<<" prix  :         "<< tableaux[indice].Prix<<endl;
             cout<<" Nombre d'essai : "<< tableaux[indice].essai<< " " <<endl;
             cout<<" Indice dans le tableau :   "<< indice << " "<<endl;
-        }
+
+             cout<< "-------------------------------"<<endl<<endl;
+
+
+
 
 }
+

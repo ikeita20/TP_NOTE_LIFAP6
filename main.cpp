@@ -7,13 +7,54 @@
 
 using namespace std;
 
+int Conversion_NUMP(string chaine )
+{
+     unsigned int choix_utilisateur ;
+
+        try {
+
+                    choix_utilisateur = std::stoi(chaine);
+
+                    return choix_utilisateur ;
+
+            }
+
+            catch (const std::invalid_argument& e)
+            {
+
+                    cout << "Veuillez écrire un nombre entier !\n";
+            }
+            return -1 ;
+}
+
+
+double Conversion_PRIX (string chaine )
+{
+     double prix ;
+        try {
+
+                    prix = std::stod(chaine);
+
+                    return prix ;
+
+            }
+
+            catch (const std::invalid_argument& e)
+            {
+                    cout << "Veuillez écrire un nombre decimal !\n";
+            }
+            return -1 ;
+}
 
 int main()
 
 {
     tableHachage t ;
-    produit a(7,0.5) , b(15,0.0);
+    produit a(7,0.5) , b(15,0.0), c(10,0.0);
     t.insererProduit(a);
+     t.insererProduit(b);
+      t.insererProduit(c);
+
     string choix_string ;
     int choix_utilisateur;
     //cout<<t.Recherche_Produit(b) ;
@@ -53,59 +94,90 @@ int main()
 
                     case 1 :{
 
-                                    produit *p ;
-                                    p =  new produit() ;
+                                   string Num_Produit ;
+                                    int c_nump;
+                                    int b;
+
                                     cout<<endl<<endl;
                                     cout<< "Ajout d'un produit "<<endl;
-                                    do
-                                    {
+                                    produit produit_test ;
+
+                                     do
+                                     {
                                         cout<<"Saisissez le Numero du produit : ";
-                                        cin>>p->NumeroProduit ;
+                                        cin>>Num_Produit;
 
-                                        if( (int)p->NumeroProduit <= 0 )
+                                            c_nump = Conversion_NUMP(Num_Produit) ;
+                                            b = (int)c_nump ;
+
+                                     }while(c_nump == -1 || b <= 0  ) ;
+
+                                     if( c_nump > 0 )
+                                     {
+                                        string prix ;
+                                        double c_prix ;
+
+
+                                        produit *p ;
+
+                                          cout<<"Saisissez le Prix du produit : ";
+                                          cin>>prix ;
+                                          c_prix = Conversion_PRIX(prix) ;
+                                          p =  new produit(c_nump, c_prix) ;
+                                          while( c_prix == -1 ||  c_prix <= 0 )
+                                          {
+                                              cout<<"PRIX ERRONE ";
+                                              cout<<"Saisissez le Prix du produit : ";
+                                              cin>>prix ;
+                                              c_prix = Conversion_PRIX(prix) ;
+                                              p =  new produit(c_nump, c_prix) ;
+
+                                          }
+
+                                        if( t.Recherche_Produit(*p) == -1 )
                                         {
-                                            cout<<"Numero de produit Erronée "<<endl;
-
-
-
+                                            t.insererProduit(*p) ;
+                                        }
+                                        else
+                                        {
+                                            cout<< " le produit "<< p->NumeroProduit <<" existe deja , il n'a pas été inseré "<<endl;
                                         }
 
 
-                                    }while( (int)p->NumeroProduit <= 0  );
+                                     }
 
-                                    do
-                                    {
-                                      cout<<"Saisissez le Prix du produit : ";
-                                      cin>>p->Prix ;
-                                      if( (int)p->Prix <= 0 )
-                                      {
-                                          cout<<"Prix erroné "<<endl;
-
-                                      }
-                                    }while ( (int)p->Prix <= 0 );
-
-                                    t.insererProduit(*p) ;
-
-                                   // cout<<"FIN de l'ajout "<<endl;
 
                             }break ;
 
                      case 2 :{
 
                                    unsigned int numero_du_nouveau_produit ;
-                                   unsigned int numero_du_produit_a_modifier ;
+                                   string numero_du_produit_a_modifier ;
 
                                       cout<<endl<<endl;
                                       cout<< "Modification de la CLÉ d'un produit "<<endl<<endl;
-                                      cout<< "Donnez le Numero du produit a modifier : ";
-                                      cin>>numero_du_produit_a_modifier ;
-                                      if( numero_du_produit_a_modifier >0){
-                                        produit prod(numero_du_produit_a_modifier,0.0);
+                                      int a;
+                                      int b ;
+                                     do
+                                     {
+                                        cout<< "Donnez le Numero du produit a modifier : ";
+                                        cin>>numero_du_produit_a_modifier ;
+
+                                            a = Conversion_NUMP(numero_du_produit_a_modifier) ;
+                                            b = (int)a ;
+
+                                     }while(a == -1 || b <= 0  ) ;
+
+                                      if( a > 0){
+
+                                        produit prod(a ,0.0);
+
                                         if( t.Recherche_Produit(prod) != -1 )
                                         {
                                             cout<< "Donnez le Numero du nouveau produit : ";
                                             cin>> numero_du_nouveau_produit;
-                                            if(numero_du_nouveau_produit >0)
+
+                                            if(numero_du_nouveau_produit > 0)
                                             {
                                               t.Modifier_CLE(prod,numero_du_nouveau_produit) ;
                                             }
@@ -117,40 +189,60 @@ int main()
                                       }
                                       else
                                       {
-                                        cout << "numéro de produit non valide" << '\n';
+                                        cout << "numéro de produit non valide " << '\n';
                                       }
-
-
-
-
-
 
 
                             }break ;
 
                       case 3 :{
-                                    unsigned int numero_du_produit_a_modifier ;
-                                    double nouveau_prix ;
+                                   string  numero_du_nouveau_produit ;
+                                   string numero_du_produit_a_modifier ;
 
                                       cout<<endl<<endl;
                                       cout<< "Modification du Prix  d'un Produit "<<endl;
-                                      cout<< "Donnez le Numero du produit a modifier : ";
-                                      cin>>numero_du_produit_a_modifier;
-                                      if( numero_du_produit_a_modifier >0){
-                                        produit p (numero_du_produit_a_modifier,0.0 ) ;
+
+
+                                        int c_nump;
+                                        double  c_prix  ;
+                                        int b ;
+
+                                      do
+                                     {
+                                            cout<< "Donnez le Numero du produit a modifier : ";
+                                            cin>>numero_du_produit_a_modifier;
+
+
+                                            c_nump= Conversion_NUMP(numero_du_produit_a_modifier) ;
+
+                                            b= (int)c_nump ;
+                                     }while(c_nump == -1 || b <= 0  ) ;
+
+
+                                      if(  c_nump >0 )
+                                      {
+                                        produit p(c_nump,0.0 ) ;
 
                                          if( t.Recherche_Produit(p) != -1 )
                                          {
+                                            string nouveau_prix ;
                                               cout<< "Donnez le Nouveau prix du produit : ";
                                               cin>>nouveau_prix ;
-                                              if(nouveau_prix >0){
-                                               t.Modifier_PRIX(p,nouveau_prix) ;
+
+                                              c_prix = Conversion_PRIX(nouveau_prix) ;
+
+                                              if(c_prix > 0 ) {
+                                               t.Modifier_PRIX(p,c_prix) ;
                                               }
                                               else
                                               {
                                                 std::cout << "Nouveau prix incorrect" << '\n';
                                               }
                                          }
+                                         else
+                                            {
+                                                cout<< " le produit "<< p.NumeroProduit <<" N'existe pas "<<endl;
+                                            }
                                        }
                                        else
                                        {
@@ -162,18 +254,39 @@ int main()
                       } break ;
 
                     case 4 :{
-                                     unsigned int numero_du_produit_a_supprimer ;
-                                     cout<< "Suppression d'un Produit "<<endl<<endl;
-                                      cin>>numero_du_produit_a_supprimer ;
-                                      if( numero_du_produit_a_supprimer >0){
-                                        produit p(numero_du_produit_a_supprimer,0.0) ;
-                                        t.Supprimer_Produit(p) ;
-                                      }
-                                      else
-                                      {
-                                        std::cout << "Numéro de produit non valide" << '\n';
-                                      }
+                                        string numero_du_produit_a_supprimer ;
+                                        int c_nump;
+                                        int b ;
 
+                                     cout<< "Suppression d'un Produit "<<endl<<endl;
+
+                                      do
+                                     {
+                                            cout<< "Donnez le Numero du produit a Supprimer : ";
+                                            cin>>numero_du_produit_a_supprimer;
+
+                                            c_nump= Conversion_NUMP(numero_du_produit_a_supprimer) ;
+                                            b= (int)c_nump ;
+
+                                     }while(c_nump == -1 || b <= 0  ) ;
+
+                                      if(  c_nump > 0 )
+                                      {
+                                        produit p(c_nump,0.0 ) ;
+
+                                         if( t.Recherche_Produit(p) != -1 )
+                                         {
+                                              t.Supprimer_Produit(p) ;
+                                         }
+                                         else
+                                        {
+                                            cout<< " le produit "<< p.NumeroProduit <<" N'existe pas "<<endl;
+                                        }
+                                       }
+                                       else
+                                       {
+                                         std::cout << "numéro de produit non valide" << '\n';
+                                       }
 
 
 
@@ -181,13 +294,37 @@ int main()
 
                       case 5 :{
 
-                                    unsigned int numero_du_nouveau_produit_rechercher ;
-                                    cout<< "Vous Rechercher le produit N° : ? ";
-                                    cin>>numero_du_nouveau_produit_rechercher ;
-                                    if( numero_du_nouveau_produit_rechercher >0){
+                                    string numero_du_nouveau_produit_rechercher ;
+                                        int c_nump;
+                                        int b ;
 
-                                      produit prod2(numero_du_nouveau_produit_rechercher,0.0);
-                                      t.Affiche_Produit(prod2) ;
+                                     cout<< "Recherche d'un Produit "<<endl<<endl;
+
+                                      do
+                                     {
+                                             cout<< "Vous Rechercher le produit N° : ? ";
+                                            cin>>numero_du_nouveau_produit_rechercher;
+
+                                            c_nump= Conversion_NUMP(numero_du_nouveau_produit_rechercher) ;
+                                            b= (int)c_nump ;
+
+                                     }while(c_nump == -1 || b <= 0  ) ;
+
+
+
+                                    if( c_nump >0 ){
+
+                                      produit prod2(c_nump,0.0);
+                                      int indice = t.Recherche_Produit(prod2);
+                                      if( indice != - 1 )
+                                      {
+                                         t.Affiche_Produit(indice) ;
+                                      }
+                                      else
+                                      {
+                                            cout<< " le produit "<< prod2.NumeroProduit <<" N'existe pas "<<endl;
+                                      }
+
 
                                     }
                                     else
@@ -200,6 +337,7 @@ int main()
 
                     case 6 : {
 
+                                cout << "*** Liste de tous les produits ***"<<endl<<endl;
                                     t.affiche();
 
 
