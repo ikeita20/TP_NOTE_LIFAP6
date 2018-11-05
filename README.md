@@ -13,6 +13,7 @@ Contenu de l'archive :
 - LICENSE
 - makefile
 - README (ce fichier)
+- performance.txt
 - Code source :
     - main.cpp
     - produit.cpp
@@ -32,7 +33,7 @@ Fonctionnalités implementées :
 - Modification précise d'un produit (clé et prix)
 - Suppression d'un produit
 - Recherche d'un produit
-- Evaluation des performances de la recherche (fichier crée : performance.txt)
+- Evaluation des performances de la recherche (fichier modifié : performance.txt)
 
 
 
