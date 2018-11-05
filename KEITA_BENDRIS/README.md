@@ -1,4 +1,3 @@
-
 # TP_NOTE_LIFAP6  # KEITA & BENDRIS
 
 
@@ -6,7 +5,7 @@
 			# Zackaria BENDRIS 11501664
 
 *****************************************************************************
-                         TP5 : Table de hachage
+                             TP5 : Table de hachage
 *****************************************************************************
 
 Makefile :
@@ -48,10 +47,7 @@ Fonctionnalités implementées :
 - Modification précise d'un produit (clé et prix)
 - Suppression d'un produit
 - Recherche d'un produit
-
 - Evaluation des performances de la recherche (fichier crée : performance.txt)
-
-- Evaluation des performances de la recherche (fichier modifié : performance.txt
 
 Certaines fonctionalitées comme la modification, la suppression entrainent l'écriture des performances dans le fichier "performances.txt" car elles mêmes utilisent la recherche.
 
