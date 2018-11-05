@@ -2,12 +2,8 @@
 # TP_NOTE_LIFAP6  # KEITA & BENDRIS
 
 
-			#Ibrahima KEITA   11612291
-			#Zackaria BENDRIS 11501664
-
-
-Ibrahima KEITA
-Zackaria BENDRIS 11501664
+			# Ibrahima KEITA   11612291
+			# Zackaria BENDRIS 11501664
 
 *****************************************************************************
                          TP5 : Table de hachage
