@@ -1,6 +1,2 @@
-1#   " Nb "       " TEMPS "   "Fonction de Rehachage"
-     
-      7             0.003757         double 
-      10             0.004428         double 
-      15             0.004893         double 
-      18	    0.515151		lineaire      7            0.004022       Lineaire 
+ #   " Nb "       " TEMPS "   "Fonction de Rehachage"
+      

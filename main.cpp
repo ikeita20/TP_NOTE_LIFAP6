@@ -3,6 +3,7 @@
 #include "table.h"
 #include <string>
 #include <stdexcept>
+#include <random>
 
 
 using namespace std;
@@ -50,14 +51,30 @@ int main()
 
 {
     tableHachage t ;
-    produit a(7,0.5) , b(15,0.0), c(10,0.0);
-    t.insererProduit(a);
-     t.insererProduit(b);
-      t.insererProduit(c);
 
     string choix_string ;
     int choix_utilisateur;
-    //cout<<t.Recherche_Produit(b) ;
+
+     unsigned int Num_produit ;
+     srand (time(NULL));
+
+
+
+    for(int i=0 ; i<50 ; i++ )
+    {
+
+  /// Remplissage de mon tableau avec random 
+
+        unsigned int Numero ;
+        Numero =   (rand() % 700 ) + 100  ;
+        Num_produit = Numero ;
+
+        produit p(Num_produit , (2.5)+ i ) ;
+
+        t.insererProduit(p) ;
+
+    }
+
     bool quitter = false;
 
     do {
@@ -357,9 +374,6 @@ int main()
 
 
     }while ( quitter == false );
-
-
-
 
 	return 0 ;
 
