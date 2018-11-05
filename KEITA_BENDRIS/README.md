@@ -34,12 +34,6 @@ Commandes :
 
 Fonctionnalités implementées :
 
-
-(Une fois le projet compilé)
-- ./executable.out 
-
-Fonctionnalités implementées :
-
 - Hachage modulo sur la clé
 - Choix de la fonction de rehachage (linéaire, quadratique et double hachage)
 - Ajout d'un produit à la table
