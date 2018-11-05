@@ -63,7 +63,7 @@ int main()
     for(int i=0 ; i<50 ; i++ )
     {
 
-  /// Remplissage de mon tableau avec random 
+  /// Remplissage de mon tableau avec random
 
         unsigned int Numero ;
         Numero =   (rand() % 700 ) + 100  ;
@@ -375,6 +375,6 @@ int main()
 
     }while ( quitter == false );
 
-	return 0 ;
+  return 0 ;
 
 }
